@@ -1,0 +1,11 @@
+<h1>Recent Tweets</h1>
+<% if @tweets.any? %>
+  <% @tweets.each do |tweet| %>
+    <div>
+      <p><strong><%= tweet.user.username %></strong>: <%= tweet.content %></p>
+      <p><small><%= time_ago_in_words(tweet.created_at) %> ago</small></p>
+    </div>
+  <% end %>
+<% else %>
+  <p>No tweets yet.</p>
+<% end %>

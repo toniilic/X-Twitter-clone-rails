@@ -1,0 +1,18 @@
+<h1>Tweets</h1>
+
+<% if user_signed_in? %>
+  <%= link_to 'New Tweet', new_tweet_path %>
+<% end %>
+
+<% @tweets.each do |tweet| %>
+  <p>
+    <%= tweet.content %>
+    <br>
+    <%= link_to "by #{tweet.user.username}", tweet.user %>
+    <% if user_signed_in? %>
+      <%= link_to 'Like', tweet_likes_path(tweet), method: :post %>
+      <%= link_to 'Retweet', tweet_retweets_path(tweet), method: :post %>
+      <%= link_to 'Delete', tweet_path(tweet), method: :delete if tweet.user == current_user %>
+    <% end %>
+  </p>
+<% end %>
